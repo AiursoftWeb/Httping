@@ -2,13 +2,25 @@ namespace Aiursoft.Httping.Services;
 
 public class PingWorker
 {
-    public async Task HttpPing(string url, int count, TimeSpan timeout, TimeSpan interval, bool insecure = false, bool quiet = false)
+    public async Task HttpPing(
+        string url, 
+        int count, 
+        TimeSpan timeout, 
+        TimeSpan interval, 
+        bool insecure = false, 
+        bool quiet = false,
+        bool followRedirect = false)
     {
-        var handler = new HttpClientHandler();
+        var handler = new HttpClientHandler()
+        {
+            AllowAutoRedirect = followRedirect,
+        };
+        
         if (insecure)
         {
             handler.ServerCertificateCustomValidationCallback = (_, _, _, _) => true;
         }
+        
         var client = new HttpClient(handler) { Timeout = timeout };
         var uri = new UriBuilder(url);
 
@@ -25,7 +37,7 @@ public class PingWorker
                 if (!quiet)
                 {
                     Console.WriteLine(
-                        $"{i + 1}: {elapsed.response.Version}, {elapsed.response.RequestMessage?.RequestUri?.Host}:{elapsed.response.RequestMessage?.RequestUri?.Port}, code={elapsed.response.StatusCode}, size={elapsed.response.Content.Headers.ContentLength} bytes, time={elapsed.TimeElapsed.TotalMilliseconds} ms");
+                        $"{i + 1}: {elapsed.response.Version}, {elapsed.response.RequestMessage?.RequestUri?.Host}:{elapsed.response.RequestMessage?.RequestUri?.Port}, code={(int)elapsed.response.StatusCode}, size={elapsed.response.Content.Headers.ContentLength} bytes, time={elapsed.TimeElapsed.TotalMilliseconds} ms");
                 }
 
                 // Statistics
@@ -37,7 +49,7 @@ public class PingWorker
 
                 // Wait
                 var wait = interval - elapsed.TimeElapsed;
-                if (wait > TimeSpan.Zero)
+                if (wait > TimeSpan.Zero && i != count - 1)
                 {
                     await Task.Delay(wait);
                 }

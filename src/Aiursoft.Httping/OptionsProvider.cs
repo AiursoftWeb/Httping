@@ -50,4 +50,12 @@ public static class OptionsProvider
     {
         IsRequired = false,
     };
+    
+    public static readonly Option<bool> FollowRedirectOption = new(
+        aliases: new[] { "--follow-redirect", "-f" },
+        getDefaultValue: () => false,
+        description: "Follow HTTP redirects.")
+    {
+        IsRequired = false,
+    };
 }

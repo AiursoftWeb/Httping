@@ -22,6 +22,7 @@ public class PingHandler : ExecutableCommandHandlerBuilder
         OptionsProvider.IntervalOption,
         OptionsProvider.InsecureOption,
         OptionsProvider.QuietOption,
+        OptionsProvider.FollowRedirectOption,
         CommonOptionsProvider.VerboseOption,
     };
     
@@ -33,6 +34,7 @@ public class PingHandler : ExecutableCommandHandlerBuilder
         var interval = context.ParseResult.GetValueForOption(OptionsProvider.IntervalOption);
         var insecure = context.ParseResult.GetValueForOption(OptionsProvider.InsecureOption);
         var quiet = context.ParseResult.GetValueForOption(OptionsProvider.QuietOption);
+        var followRedirect = context.ParseResult.GetValueForOption(OptionsProvider.FollowRedirectOption);
         var verbose = context.ParseResult.GetValueForOption(CommonOptionsProvider.VerboseOption);
 
         var host = ServiceBuilder
@@ -48,6 +50,7 @@ public class PingHandler : ExecutableCommandHandlerBuilder
             timeout: TimeSpan.FromMilliseconds(timeout),
             interval: TimeSpan.FromMilliseconds(interval), 
             insecure: insecure,
-            quiet: quiet);
+            quiet: quiet,
+            followRedirect: followRedirect);
     }
 }
