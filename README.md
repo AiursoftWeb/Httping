@@ -52,6 +52,7 @@ Options:
   -i, --interval <interval>     Time in milliseconds to wait between pings. The default is 1000. [default: 1000]
   -k, --insecure                Allow insecure server connections when using SSL. [default: False]
   -q, --quiet                   Quiet output. Nothing is displayed except the summary lines at startup time and when finished. [default: False]
+  -f, --follow-redirect         Follow HTTP redirects. [default: False]
   -v, --verbose                 Show detailed log
   --version                     Show version information
   -?, -h, --help                Show help and usage information
