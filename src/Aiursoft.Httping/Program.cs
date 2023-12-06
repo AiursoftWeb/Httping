@@ -1,9 +1,4 @@
-﻿// Program.cs
-using Aiursoft.CommandFramework;
-using Aiursoft.CommandFramework.Extensions;
-using Aiursoft.Httping;
+﻿using Aiursoft.Httping;
 
-var command = new PingHandler().BuildAsCommand();
+return await new PingHandler().RunAsync(args, defaultOption: OptionsProvider.ServerOption);
 
-return await new AiursoftCommandApp(command)
-    .RunAsync(args.WithDefaultTo(OptionsProvider.ServerOption));
