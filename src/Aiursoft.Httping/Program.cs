@@ -1,2 +1,9 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿// Program.cs
+using Aiursoft.CommandFramework;
+using Aiursoft.CommandFramework.Extensions;
+using Aiursoft.Httping;
+
+var command = new PingHandler().BuildAsCommand();
+
+return await new AiursoftCommandApp(command)
+    .RunAsync(args.WithDefaultTo(OptionsProvider.ServerOption));
