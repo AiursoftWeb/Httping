@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Aiursoft.Httping;
 
-public class PingHandler : CommandHandler
+public class PingHandler : ExecutableCommandHandlerBuilder
 {
     public override string Name => "httping";
 

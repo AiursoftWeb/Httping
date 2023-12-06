@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
     <TargetFramework>net7.0</TargetFramework>
     <AssemblyName>httping</AssemblyName>
     <RootNamespace>Aiursoft.Httping</RootNamespace>
@@ -23,6 +23,6 @@
     <None Include="..\..\README.md" Pack="true" PackagePath="." />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Aiursoft.CommandFramework" Version="7.0.11" />
+    <PackageReference Include="Aiursoft.CommandFramework" Version="7.0.14" />
   </ItemGroup>
 </Project>
