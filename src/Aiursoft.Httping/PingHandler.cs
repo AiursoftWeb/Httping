@@ -14,11 +14,6 @@ public class PingHandler : CommandHandler
 
     public override string Description => "Ping a server with HTTP protocol."; 
 
-    public override void OnCommandBuilt(Command command)
-    {
-        command.SetHandler(Execute);
-    }
-    
     public override Option[] GetCommandOptions() => new Option[]
     {
         OptionsProvider.ServerOption,
@@ -29,8 +24,8 @@ public class PingHandler : CommandHandler
         OptionsProvider.QuietOption,
         CommonOptionsProvider.VerboseOption,
     };
-
-    private static async Task Execute(InvocationContext context)
+    
+    protected override async Task Execute(InvocationContext context)
     {
         var server = context.ParseResult.GetValueForOption(OptionsProvider.ServerOption)!;
         var count = context.ParseResult.GetValueForOption(OptionsProvider.CountOption);
