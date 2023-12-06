@@ -58,6 +58,12 @@ public class PingWorker
             {
                 loss++;
                 Console.WriteLine($"PING {url} timeout");
+                
+                var wait = interval - timeout;
+                if (wait > TimeSpan.Zero && i != count - 1)
+                {
+                    await Task.Delay(wait);
+                }
             }
             catch (Exception ex)
             {
