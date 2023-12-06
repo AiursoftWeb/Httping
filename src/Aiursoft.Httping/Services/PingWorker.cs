@@ -34,13 +34,18 @@ public class PingWorker
                     elapsed.TimeElapsed.TotalMilliseconds));
                 maximum = TimeSpan.FromMilliseconds(Math.Max(maximum.TotalMilliseconds,
                     elapsed.TimeElapsed.TotalMilliseconds));
-                
+
                 // Wait
                 var wait = interval - elapsed.TimeElapsed;
                 if (wait > TimeSpan.Zero)
                 {
                     await Task.Delay(wait);
                 }
+            }
+            catch (TaskCanceledException)
+            {
+                loss++;
+                Console.WriteLine($"PING {url} timeout");
             }
             catch (Exception ex)
             {
