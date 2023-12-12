@@ -6,7 +6,7 @@ namespace Aiursoft.Httping.Tests;
 [TestClass]
 public class IntegrationTests
 {
-    private readonly SingleCommandApp _program = new SingleCommandApp(new PingHandler())
+    private readonly SingleCommandApp<PingHandler> _program = new SingleCommandApp<PingHandler>()
         .WithDefaultOption(OptionsProvider.ServerOption);
 
     [TestMethod]
