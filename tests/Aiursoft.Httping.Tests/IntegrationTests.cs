@@ -1,3 +1,4 @@
+using Aiursoft.CommandFramework;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Aiursoft.Httping.Tests;
@@ -5,7 +6,8 @@ namespace Aiursoft.Httping.Tests;
 [TestClass]
 public class IntegrationTests
 {
-    private readonly PingHandler _program = new();
+    private readonly SingleCommandApp _program = new SingleCommandApp(new PingHandler())
+        .WithDefaultOption(OptionsProvider.ServerOption);
 
     [TestMethod]
     public async Task InvokeHelp()

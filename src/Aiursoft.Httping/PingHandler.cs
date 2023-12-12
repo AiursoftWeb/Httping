@@ -10,11 +10,11 @@ namespace Aiursoft.Httping;
 
 public class PingHandler : ExecutableCommandHandlerBuilder
 {
-    public override string Name => "httping";
+    protected override string Name => "httping";
 
-    public override string Description => "Ping a server with HTTP protocol."; 
+    protected override string Description => "Ping a server with HTTP protocol.";
 
-    public override Option[] GetCommandOptions() => new Option[]
+    protected override Option[] GetCommandOptions() => new Option[]
     {
         OptionsProvider.ServerOption,
         OptionsProvider.CountOption,
