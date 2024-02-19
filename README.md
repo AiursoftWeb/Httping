@@ -12,7 +12,7 @@ Httping is a simple HTTP ping tool. It can ping a website and get the response t
 
 Requirements:
 
-1. [.NET 7 SDK](http://dot.net/)
+1. [.NET 8 SDK](http://dot.net/)
 
 Run the following command to install this tool:
 
@@ -62,7 +62,7 @@ Options:
 
 Requirements about how to run
 
-1. [.NET 7 SDK](http://dot.net/)
+1. [.NET 8 SDK](http://dot.net/)
 2. Execute `dotnet run` to run the app
 
 ## Run in Microsoft Visual Studio
