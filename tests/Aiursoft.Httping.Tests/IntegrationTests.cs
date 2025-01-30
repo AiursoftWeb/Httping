@@ -12,28 +12,28 @@ public class IntegrationTests
     [TestMethod]
     public async Task InvokeHelp()
     {
-        var result = await _program.TestRunAsync(new[] { "--help" }, defaultOption: OptionsProvider.ServerOption);
+        var result = await _program.TestRunAsync(["--help"], defaultOption: OptionsProvider.ServerOption);
         Assert.AreEqual(0, result.ProgramReturn);
     }
 
     [TestMethod]
     public async Task InvokeVersion()
     {
-        var result = await _program.TestRunAsync(new[] { "--version" }, defaultOption: OptionsProvider.ServerOption);
+        var result = await _program.TestRunAsync(["--version"], defaultOption: OptionsProvider.ServerOption);
         Assert.AreEqual(0, result.ProgramReturn);
     }
 
     [TestMethod]
     public async Task InvokeUnknown()
     {
-        var result = await _program.TestRunAsync(new[] { "--wtf" }, defaultOption: OptionsProvider.ServerOption);
+        var result = await _program.TestRunAsync(["--wtf"], defaultOption: OptionsProvider.ServerOption);
         Assert.AreEqual(1, result.ProgramReturn);
     }
 
     [TestMethod]
     public async Task InvokeWithoutArg()
     {
-        var result = await _program.TestRunAsync(Array.Empty<string>(), defaultOption: OptionsProvider.ServerOption);
+        var result = await _program.TestRunAsync([], defaultOption: OptionsProvider.ServerOption);
         Assert.AreEqual(1, result.ProgramReturn);
     }
     
@@ -41,12 +41,11 @@ public class IntegrationTests
     public async Task InvokePing()
     {
         // Run
-        var result = await _program.TestRunAsync(new[]
-        {
+        var result = await _program.TestRunAsync([
             "www.bing.com",
             "-n",
             "1"
-        }, defaultOption: OptionsProvider.ServerOption);
+        ], defaultOption: OptionsProvider.ServerOption);
 
         // Assert
         Assert.AreEqual(0, result.ProgramReturn);
@@ -56,12 +55,11 @@ public class IntegrationTests
     public async Task InvokePingFailed()
     {
         // Run
-        var result = await _program.TestRunAsync(new[]
-        {
+        var result = await _program.TestRunAsync([
             "wrong-value",
             "-n",
-            "1",
-        }, defaultOption: OptionsProvider.ServerOption);
+            "1"
+        ], defaultOption: OptionsProvider.ServerOption);
 
         // Assert
         Assert.AreEqual(0, result.ProgramReturn);

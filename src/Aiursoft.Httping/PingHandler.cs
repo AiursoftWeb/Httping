@@ -14,8 +14,8 @@ public class PingHandler : ExecutableCommandHandlerBuilder
 
     protected override string Description => "Ping a server with HTTP protocol.";
 
-    protected override Option[] GetCommandOptions() => new Option[]
-    {
+    protected override Option[] GetCommandOptions() =>
+    [
         OptionsProvider.ServerOption,
         OptionsProvider.CountOption,
         OptionsProvider.TimeoutOption,
@@ -23,8 +23,8 @@ public class PingHandler : ExecutableCommandHandlerBuilder
         OptionsProvider.InsecureOption,
         OptionsProvider.QuietOption,
         OptionsProvider.FollowRedirectOption,
-        CommonOptionsProvider.VerboseOption,
-    };
+        CommonOptionsProvider.VerboseOption
+    ];
     
     protected override async Task Execute(InvocationContext context)
     {
