@@ -16,6 +16,8 @@ public class PingWorker
     {
         if (!url.Contains("://"))
         {
+            // If the user inputs a URL without a protocol, prepend "http://" by default.
+            // If HTTPS is required, the user should explicitly prepend "https://" to the URL.
             url = "http://" + url;
         }
         
