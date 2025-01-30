@@ -1,26 +1,53 @@
+using System.Net;
+
 namespace Aiursoft.Httping.Services;
 
 public class PingWorker
 {
     public async Task HttpPing(
-        string url, 
-        int count, 
-        TimeSpan timeout, 
-        TimeSpan interval, 
-        bool insecure = false, 
+        string url,
+        int count,
+        TimeSpan timeout,
+        TimeSpan interval,
+        bool insecure = false,
         bool quiet = false,
-        bool followRedirect = false)
+        bool followRedirect = false,
+        bool noProxy = false)
     {
-        var handler = new HttpClientHandler()
+        if (!url.Contains("://"))
+        {
+            url = "http://" + url;
+        }
+        
+        var proxy = WebRequest.GetSystemWebProxy();
+        var handler = new HttpClientHandler
         {
             AllowAutoRedirect = followRedirect,
+            Proxy = proxy,
+            UseProxy = !noProxy
         };
-        
+
         if (insecure)
         {
             handler.ServerCertificateCustomValidationCallback = (_, _, _, _) => true;
         }
         
+        if (!quiet)
+        {
+            if (!noProxy)
+            {
+                var actualProxyUrl = proxy.GetProxy(new Uri(url));
+                if (actualProxyUrl != null && actualProxyUrl.ToString() != url)
+                {
+                    Console.WriteLine($"[Proxy] Using system proxy: {actualProxyUrl}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("[Proxy] Proxy disabled by user override.");
+            }
+        }
+
         var client = new HttpClient(handler) { Timeout = timeout };
         var uri = new UriBuilder(url);
 
@@ -83,7 +110,9 @@ public class PingWorker
             $"    Minimum = {minimum.TotalMilliseconds}ms, Maximum = {maximum.TotalMilliseconds}ms, Average = {average.TotalMilliseconds}ms");
     }
 
-    private async Task<(HttpResponseMessage response, TimeSpan TimeElapsed)> SendHttpRequest(HttpClient client, UriBuilder uri)
+    private async Task<(HttpResponseMessage response, TimeSpan TimeElapsed)> SendHttpRequest(
+        HttpClient client, 
+        UriBuilder uri)
     {
         var watch = System.Diagnostics.Stopwatch.StartNew();
         var response = await client.GetAsync(uri.Uri);

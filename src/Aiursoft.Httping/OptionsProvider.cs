@@ -58,4 +58,12 @@ public static class OptionsProvider
     {
         IsRequired = false,
     };
+    
+    public static readonly Option<bool> NoProxyOption = new(
+        aliases: ["--no-proxy"],
+        getDefaultValue: () => false,
+        description: "Do not use a proxy server.")
+    {
+        IsRequired = false,
+    };
 }
