@@ -8,7 +8,7 @@
 
 Httping is a simple HTTP ping tool. It can ping a website and get the response time.
 
-## Install
+## Installation
 
 Requirements:
 
