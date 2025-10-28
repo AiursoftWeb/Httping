@@ -1,10 +1,10 @@
 # Httping
 
-[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://gitlab.aiursoft.cn/aiursoft/httping/-/blob/master/LICENSE)
-[![Pipeline stat](https://gitlab.aiursoft.cn/aiursoft/httping/badges/master/pipeline.svg)](https://gitlab.aiursoft.cn/aiursoft/httping/-/pipelines)
-[![Test Coverage](https://gitlab.aiursoft.cn/aiursoft/httping/badges/master/coverage.svg)](https://gitlab.aiursoft.cn/aiursoft/httping/-/pipelines)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://gitlab.aiursoft.com/aiursoft/httping/-/blob/master/LICENSE)
+[![Pipeline stat](https://gitlab.aiursoft.com/aiursoft/httping/badges/master/pipeline.svg)](https://gitlab.aiursoft.com/aiursoft/httping/-/pipelines)
+[![Test Coverage](https://gitlab.aiursoft.com/aiursoft/httping/badges/master/coverage.svg)](https://gitlab.aiursoft.com/aiursoft/httping/-/pipelines)
 [![NuGet version (Aiursoft.Httping)](https://img.shields.io/nuget/v/Aiursoft.Httping.svg)](https://www.nuget.org/packages/Aiursoft.Httping/)
-[![ManHours](https://manhours.aiursoft.cn/r/gitlab.aiursoft.cn/aiursoft/httping.svg)](https://gitlab.aiursoft.cn/aiursoft/httping/-/commits/master?ref_type=heads)
+[![ManHours](https://manhours.aiursoft.cn/r/gitlab.aiursoft.com/aiursoft/httping.svg)](https://gitlab.aiursoft.com/aiursoft/httping/-/commits/master?ref_type=heads)
 
 Httping is a simple HTTP ping tool. It can ping a website and get the response time.
 
