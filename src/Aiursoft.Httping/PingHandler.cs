@@ -1,5 +1,4 @@
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using Aiursoft.CommandFramework.Framework;
 using Aiursoft.CommandFramework.Models;
 using Aiursoft.CommandFramework.Services;
@@ -26,18 +25,18 @@ public class PingHandler : ExecutableCommandHandlerBuilder
         OptionsProvider.NoProxyOption,
         CommonOptionsProvider.VerboseOption
     ];
-    
-    protected override async Task Execute(InvocationContext context)
+
+    protected override async Task Execute(ParseResult context)
     {
-        var server = context.ParseResult.GetValueForOption(OptionsProvider.ServerOption)!;
-        var count = context.ParseResult.GetValueForOption(OptionsProvider.CountOption);
-        var timeout = context.ParseResult.GetValueForOption(OptionsProvider.TimeoutOption);
-        var interval = context.ParseResult.GetValueForOption(OptionsProvider.IntervalOption);
-        var insecure = context.ParseResult.GetValueForOption(OptionsProvider.InsecureOption);
-        var quiet = context.ParseResult.GetValueForOption(OptionsProvider.QuietOption);
-        var followRedirect = context.ParseResult.GetValueForOption(OptionsProvider.FollowRedirectOption);
-        var noProxy = context.ParseResult.GetValueForOption(OptionsProvider.NoProxyOption);
-        var verbose = context.ParseResult.GetValueForOption(CommonOptionsProvider.VerboseOption);
+        var server = context.GetValue(OptionsProvider.ServerOption)!;
+        var count = context.GetValue(OptionsProvider.CountOption);
+        var timeout = context.GetValue(OptionsProvider.TimeoutOption);
+        var interval = context.GetValue(OptionsProvider.IntervalOption);
+        var insecure = context.GetValue(OptionsProvider.InsecureOption);
+        var quiet = context.GetValue(OptionsProvider.QuietOption);
+        var followRedirect = context.GetValue(OptionsProvider.FollowRedirectOption);
+        var noProxy = context.GetValue(OptionsProvider.NoProxyOption);
+        var verbose = context.GetValue(CommonOptionsProvider.VerboseOption);
 
         var host = ServiceBuilder
             .CreateCommandHostBuilder<Startup>(verbose)
@@ -47,10 +46,10 @@ public class PingHandler : ExecutableCommandHandlerBuilder
 
         var pingWorker = host.Services.GetRequiredService<PingWorker>();
         await pingWorker.HttpPing(
-            url: server, 
-            count: count, 
+            url: server,
+            count: count,
             timeout: TimeSpan.FromMilliseconds(timeout),
-            interval: TimeSpan.FromMilliseconds(interval), 
+            interval: TimeSpan.FromMilliseconds(interval),
             insecure: insecure,
             quiet: quiet,
             followRedirect: followRedirect,

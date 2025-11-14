@@ -1,5 +1,4 @@
 using Aiursoft.CommandFramework;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Aiursoft.Httping.Tests;
 
