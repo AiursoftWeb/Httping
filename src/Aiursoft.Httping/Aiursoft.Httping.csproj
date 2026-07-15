@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup><OutputType>Exe</OutputType>
-    <Version>10.0.10</Version>
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <Version>10.0.11</Version>
     <TargetFramework>net10.0</TargetFramework>
     <AssemblyName>httping</AssemblyName>
     <RootNamespace>Aiursoft.Httping</RootNamespace>
@@ -20,11 +21,12 @@
     <PackageProjectUrl>https://gitlab.aiursoft.com/aiursoft/httping</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://gitlab.aiursoft.com/aiursoft/httping.git</RepositoryUrl>
-    <PackageReadmeFile>README.md</PackageReadmeFile></PropertyGroup>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
   <ItemGroup>
     <None Include="..\..\README.md" Pack="true" PackagePath="." />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Aiursoft.CommandFramework" Version="10.0.11" />
+    <PackageReference Include="Aiursoft.CommandFramework" Version="10.0.12" />
   </ItemGroup>
 </Project>
