@@ -4,7 +4,7 @@
 [![Pipeline stat](https://gitlab.aiursoft.com/aiursoft/httping/badges/master/pipeline.svg)](https://gitlab.aiursoft.com/aiursoft/httping/-/pipelines)
 [![Test Coverage](https://gitlab.aiursoft.com/aiursoft/httping/badges/master/coverage.svg)](https://gitlab.aiursoft.com/aiursoft/httping/-/pipelines)
 [![NuGet version (Aiursoft.Httping)](https://img.shields.io/nuget/v/Aiursoft.Httping.svg)](https://www.nuget.org/packages/Aiursoft.Httping/)
-[![Man hours](https://manhours.aiursoft.com/r/gitlab.aiursoft.com/aiursoft/httping.svg)](https://manhours.aiursoft.com/r/gitlab.aiursoft.com/aiursoft/httping.html)
+[![Man hours](https://manhours.aiursoft.com/r/github.com/aiursoftweb/httping.svg)](https://manhours.aiursoft.com/r/github.com/aiursoftweb/httping.html)
 
 Httping is a simple HTTP ping tool. It can ping a website and get the response time.
 
