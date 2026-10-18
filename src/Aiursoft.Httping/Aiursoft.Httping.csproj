@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <Version>10.0.15</Version>
+    <Version>10.0.16</Version>
     <TargetFramework>net10.0</TargetFramework>
     <AssemblyName>httping</AssemblyName>
     <RootNamespace>Aiursoft.Httping</RootNamespace>
@@ -18,9 +18,9 @@
     <PackageId>Aiursoft.Httping</PackageId>
     <PackageTags>nuget package dotnet csproj httping</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://gitlab.aiursoft.com/aiursoft/httping</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/AiursoftWeb/httping</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://gitlab.aiursoft.com/aiursoft/httping.git</RepositoryUrl>
+    <RepositoryUrl>https://github.com/AiursoftWeb/httping.git</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
