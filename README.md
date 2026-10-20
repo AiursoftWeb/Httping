@@ -3,6 +3,7 @@
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/AiursoftWeb/httping/blob/master/LICENSE)
 [![Pipeline stat](https://gitlab.aiursoft.com/aiursoft/httping/badges/master/pipeline.svg)](https://gitlab.aiursoft.com/aiursoft/httping/-/pipelines)
 [![Test Coverage](https://gitlab.aiursoft.com/aiursoft/httping/badges/master/coverage.svg)](https://gitlab.aiursoft.com/aiursoft/httping/-/pipelines)
+[![S360 compliance](https://s360.aiursoft.com/badge.svg?project=aiursoft%2Fhttping)](https://s360.aiursoft.com/SupplyChain?tab=projects&project=aiursoft%2Fhttping&scope=baseline&ecosystem=all)
 [![NuGet version (Aiursoft.Httping)](https://img.shields.io/nuget/v/Aiursoft.Httping.svg)](https://www.nuget.org/packages/Aiursoft.Httping/)
 [![Man hours](https://manhours.aiursoft.com/r/github.com/aiursoftweb/httping.svg)](https://manhours.aiursoft.com/r/github.com/aiursoftweb/httping.html)
 
