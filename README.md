@@ -79,11 +79,9 @@ httping --server http://127.0.0.1:8080 --count 1 --no-proxy
 
 This probes the server; it does not start or reconfigure it.
 
-See [the CLI guide](https://github.com/AiursoftWeb/httping/blob/master/docs/usage.md) for commands and examples.
-
 ## Configuration
 
-Configuration is supplied through command-line options. URLs without a scheme use HTTP; specify `https://` for HTTPS. Httping uses the system proxy by default; `--no-proxy` bypasses it. See [the option reference](https://github.com/AiursoftWeb/httping/blob/master/docs/usage.md#options) for timeouts, intervals, redirects and output controls.
+Configuration is supplied through command-line options. URLs without a scheme use HTTP; specify `https://` for HTTPS. Httping uses the system proxy by default; `--no-proxy` bypasses it. The complete option reference is below.
 
 ### Command-line options
 
@@ -128,16 +126,18 @@ dotnet test Aiursoft.Httping.sln --no-restore
 
 ## Documentation
 
-- [Requests, results and options](https://github.com/AiursoftWeb/httping/blob/master/docs/usage.md)
-- [Probing a local HTTP server](https://github.com/AiursoftWeb/httping/blob/master/docs/usage.md#local-checks)
+- [Requests, results and examples](#examples-and-output)
+- [Complete command-line options](#command-line-options)
 - <a name="run-locally"></a>[Build and run from source](#development)
 - <a name="run-in-microsoft-visual-studio"></a>[Visual Studio: open Aiursoft.Httping.sln and run the tool project](#development)
 
 ## How to contribute
 
-Report bugs and feature requests through the [issue tracker](https://github.com/AiursoftWeb/httping/issues). Create a feature branch or fork and submit a merge request or pull request for review.
+There are many ways to contribute to the project: logging bugs, submitting pull requests, reporting issues, and creating suggestions.
 
-Follow the [development guide](#development) to build and run the existing checks before submitting changes.
+Even if you have push rights on the repository, you should create a personal fork and create feature branches there when you need them. This keeps the main repository clean and your workflow cruft out of sight.
+
+We're also interested in your feedback on the future of this project. You can submit a suggestion or feature request through the issue tracker. To make this process more effective, we're asking that these include more information to help define them more clearly.
 
 ## License
 
