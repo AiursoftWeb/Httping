@@ -9,33 +9,59 @@
 
 Httping is a simple HTTP ping tool. It can ping a website and get the response time.
 
+## Overview
+
+Send a bounded series of HTTP requests and inspect each response time, then read the request-count and round-trip summary. Httping runs locally and does not require a Controller or an API key.
+
 ## Installation
 
-Requirements:
-
-1. [.NET 10 SDK](http://dot.net/)
-
-Run the following command to install this tool:
+Install the CLI with the [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0):
 
 ```bash
 dotnet tool install --global Aiursoft.Httping
 ```
 
-## Usage
-
-After getting the binary, run it directly in the terminal.
+Update an existing installation:
 
 ```bash
-$ httping www.bing.com
+dotnet tool update --global Aiursoft.Httping
 ```
 
-That's it! It will ping the website and get the response time.
+Remove the CLI:
 
 ```bash
-1: 1.1, www.bing.com:443, code=OK, size=40744 bytes, time=837.8612 ms
-2: 1.1, www.bing.com:443, code=OK, size=40675 bytes, time=418.0189 ms
-3: 1.1, www.bing.com:443, code=OK, size=40675 bytes, time=413.7146 ms
-4: 1.1, www.bing.com:443, code=OK, size=40675 bytes, time=407.5908 ms
+dotnet tool uninstall --global Aiursoft.Httping
+```
+
+## Usage
+
+Run the command to see available options:
+
+```bash
+httping --help
+```
+
+```bash
+httping --server https://example.com --count 4
+```
+
+This sends four requests and prints per-response timings followed by a summary.
+
+### Examples and output
+
+A server can also be passed positionally:
+
+```bash
+httping www.bing.com
+```
+
+Use an explicit HTTPS URL when TLS is required. A representative successful HTTPS run prints the following (response sizes and timings vary):
+
+```text
+1: 1.1, www.bing.com:443, code=200, size=40744 bytes, time=837.8612 ms
+2: 1.1, www.bing.com:443, code=200, size=40675 bytes, time=418.0189 ms
+3: 1.1, www.bing.com:443, code=200, size=40675 bytes, time=413.7146 ms
+4: 1.1, www.bing.com:443, code=200, size=40675 bytes, time=407.5908 ms
 
 Ping statistics for www.bing.com
     Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
@@ -43,38 +69,76 @@ Approximate round trip times in milli-seconds:
     Minimum = 407.5908ms, Maximum = 837.8612ms, Average = 519.2964ms
 ```
 
-And it support options:
+Each response reports the HTTP version, host/port, numeric status code, size and elapsed time. The summary reports sent, received and lost requests and minimum, maximum and average round-trip times. An HTTP response such as 404 still counts as received; timeouts and transport errors count as lost. The result measures HTTP transport, rather than requiring a successful application status.
+
+To probe a local server already listening on port 8080:
 
 ```bash
-Options:
-  --server <server> (REQUIRED)  The server address to ping. Can be a domain name or an IP address.
-  -n, --count <count>           The number of echo requests to send. The default is 4. [default: 4]
-  -w, --timeout <timeout>       Timeout in milliseconds to wait for each reply. The default is 5000. [default: 5000]
-  -i, --interval <interval>     Time in milliseconds to wait between pings. The default is 1000. [default: 1000]
-  -k, --insecure                Allow insecure server connections when using SSL. [default: False]
-  -q, --quiet                   Quiet output. Nothing is displayed except the summary lines at startup time and when finished. [default: False]
-  -f, --follow-redirect         Follow HTTP redirects. [default: False]
-  -v, --verbose                 Show detailed log
-  --version                     Show version information
-  -?, -h, --help                Show help and usage information
+httping --server http://127.0.0.1:8080 --count 1 --no-proxy
 ```
 
-## Run locally
+This probes the server; it does not start or reconfigure it.
 
-Requirements about how to run
+## Configuration
 
-1. [.NET 10 SDK](http://dot.net/)
-2. Execute `dotnet run` to run the app
+Configuration is supplied through command-line options. URLs without a scheme use HTTP; specify `https://` for HTTPS. Httping uses the system proxy by default; `--no-proxy` bypasses it. The complete option reference is below.
 
-## Run in Microsoft Visual Studio
+### Command-line options
 
-1. Open the `.sln` file in the project path.
-2. Press `F5`.
+| Option | Meaning | Default |
+| --- | --- | --- |
+| `--server` | Domain, IP address or full URL; may also be positional | Required |
+| `-n`, `--count` | Number of requests | `4` |
+| `-w`, `--timeout` | Per-request timeout in milliseconds | `5000` |
+| `-i`, `--interval` | Interval between request starts in milliseconds | `1000` |
+| `-k`, `--insecure` | Disable TLS certificate validation | `false` |
+| `-q`, `--quiet` | Suppress per-response output | `false` |
+| `-f`, `--follow-redirect` | Follow redirects | `false` |
+| `--no-proxy` | Bypass the system proxy | `false` |
+| `-v`, `--verbose` | Detailed framework logging | `false` |
+| `--version` | Show the tool version | — |
+| `-?`, `-h`, `--help` | Show current help | — |
+
+Read current help with `httping --help`. A URL without a scheme uses HTTP; use `https://` when HTTPS is required.
+
+## Development
+
+Install the [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0).
+
+From the repository root, restore and build:
+
+```bash
+dotnet restore Aiursoft.Httping.sln
+dotnet build Aiursoft.Httping.sln --no-restore
+```
+
+Run the tool from source:
+
+```bash
+dotnet run --project src/Aiursoft.Httping/Aiursoft.Httping.csproj -- --help
+```
+
+Run the existing tests:
+
+```bash
+dotnet test Aiursoft.Httping.sln --no-restore
+```
+
+## Documentation
+
+- [Requests, results and examples](#examples-and-output)
+- [Complete command-line options](#command-line-options)
+- <a name="run-locally"></a>[Build and run from source](#development)
+- <a name="run-in-microsoft-visual-studio"></a>[Visual Studio: open Aiursoft.Httping.sln and run the tool project](#development)
 
 ## How to contribute
 
 There are many ways to contribute to the project: logging bugs, submitting pull requests, reporting issues, and creating suggestions.
 
-Even if you with push rights on the repository, you should create a personal fork and create feature branches there when you need them. This keeps the main repository clean and your workflow cruft out of sight.
+Even if you have push rights on the repository, you should create a personal fork and create feature branches there when you need them. This keeps the main repository clean and your workflow cruft out of sight.
 
 We're also interested in your feedback on the future of this project. You can submit a suggestion or feature request through the issue tracker. To make this process more effective, we're asking that these include more information to help define them more clearly.
+
+## License
+
+Licensed under the [MIT License](https://github.com/AiursoftWeb/httping/blob/master/LICENSE).
