@@ -1,5 +1,6 @@
 # Aiursoft Httping
 
+<a name="aiursoft-httping"></a>
 <a name="httping"></a>
 
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/AiursoftWeb/httping/blob/master/LICENSE)
@@ -12,6 +13,8 @@
 Httping is a simple HTTP ping tool. It can ping a website and get the response time.
 
 ## Overview
+
+### What is Httping?
 
 Send a bounded series of HTTP requests and inspect each response time, then read the request-count and round-trip summary. Httping runs locally and does not require a Controller or an API key.
 
@@ -85,7 +88,8 @@ This probes the server; it does not start or reconfigure it.
 
 Configuration is supplied through command-line options. URLs without a scheme use HTTP; specify `https://` for HTTPS. Httping uses the system proxy by default; `--no-proxy` bypasses it. The complete option reference is below.
 
-### Command-line options
+<a name="command-line-options"></a>
+**Command-line options**
 
 | Option | Meaning | Default |
 | --- | --- | --- |
@@ -114,11 +118,16 @@ dotnet restore Aiursoft.Httping.sln
 dotnet build Aiursoft.Httping.sln --no-restore
 ```
 
-Run the tool from source:
+<a name="run-locally"></a>
+<a name="local-run"></a>
+Run the tool from source, with the prerequisites and configuration above:
 
 ```bash
 dotnet run --project src/Aiursoft.Httping/Aiursoft.Httping.csproj -- --help
 ```
+
+<a name="run-in-microsoft-visual-studio"></a>
+In Microsoft Visual Studio, open `Aiursoft.Httping.sln`, select `Aiursoft.Httping` as the startup project and press `F5`. Configure the arguments and environment for the task you want to run.
 
 Run the existing tests:
 
@@ -126,12 +135,12 @@ Run the existing tests:
 dotnet test Aiursoft.Httping.sln --no-restore
 ```
 
+
 ## Documentation
 
 - [Requests, results and examples](#examples-and-output)
 - [Complete command-line options](#command-line-options)
-- <a name="run-locally"></a>[Build and run from source](#development)
-- <a name="run-in-microsoft-visual-studio"></a>[Visual Studio: open Aiursoft.Httping.sln and run the tool project](#development)
+- [Build and run from source](#development)
 
 ## How to contribute
 
