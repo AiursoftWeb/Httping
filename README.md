@@ -47,11 +47,61 @@ httping --server https://example.com --count 4
 
 This sends four requests and prints per-response timings followed by a summary.
 
+### Examples and output
+
+A server can also be passed positionally:
+
+```bash
+httping www.bing.com
+```
+
+Use an explicit HTTPS URL when TLS is required. A representative successful HTTPS run prints the following (response sizes and timings vary):
+
+```text
+1: 1.1, www.bing.com:443, code=200, size=40744 bytes, time=837.8612 ms
+2: 1.1, www.bing.com:443, code=200, size=40675 bytes, time=418.0189 ms
+3: 1.1, www.bing.com:443, code=200, size=40675 bytes, time=413.7146 ms
+4: 1.1, www.bing.com:443, code=200, size=40675 bytes, time=407.5908 ms
+
+Ping statistics for www.bing.com
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 407.5908ms, Maximum = 837.8612ms, Average = 519.2964ms
+```
+
+Each response reports the HTTP version, host/port, numeric status code, size and elapsed time. The summary reports sent, received and lost requests and minimum, maximum and average round-trip times. An HTTP response such as 404 still counts as received; timeouts and transport errors count as lost. The result measures HTTP transport, rather than requiring a successful application status.
+
+To probe a local server already listening on port 8080:
+
+```bash
+httping --server http://127.0.0.1:8080 --count 1 --no-proxy
+```
+
+This probes the server; it does not start or reconfigure it.
+
 See [the CLI guide](https://github.com/AiursoftWeb/httping/blob/master/docs/usage.md) for commands and examples.
 
 ## Configuration
 
 Configuration is supplied through command-line options. URLs without a scheme use HTTP; specify `https://` for HTTPS. Httping uses the system proxy by default; `--no-proxy` bypasses it. See [the option reference](https://github.com/AiursoftWeb/httping/blob/master/docs/usage.md#options) for timeouts, intervals, redirects and output controls.
+
+### Command-line options
+
+| Option | Meaning | Default |
+| --- | --- | --- |
+| `--server` | Domain, IP address or full URL; may also be positional | Required |
+| `-n`, `--count` | Number of requests | `4` |
+| `-w`, `--timeout` | Per-request timeout in milliseconds | `5000` |
+| `-i`, `--interval` | Interval between request starts in milliseconds | `1000` |
+| `-k`, `--insecure` | Disable TLS certificate validation | `false` |
+| `-q`, `--quiet` | Suppress per-response output | `false` |
+| `-f`, `--follow-redirect` | Follow redirects | `false` |
+| `--no-proxy` | Bypass the system proxy | `false` |
+| `-v`, `--verbose` | Detailed framework logging | `false` |
+| `--version` | Show the tool version | — |
+| `-?`, `-h`, `--help` | Show current help | — |
+
+Read current help with `httping --help`. A URL without a scheme uses HTTP; use `https://` when HTTPS is required.
 
 ## Development
 
